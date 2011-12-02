@@ -21,11 +21,10 @@ Assuming html like that:
           #stretch-me  
           #footer
 
-    $("#main").stretch({
-      heightProvider: window // we don't want to use body's height
-    }); // this stretches the main div to the window
-                          // height
-    $("#stretch-me").stretch() // this stretches stretch-me, but keeps the
+    $("#main").stretch({ // this stretches #main to the window's height
+      heightProvider: window // so we don't want to use body's height
+    });
+    $("#stretch-me").stretch(); // this stretches stretch-me, but keeps the
                                // footer untouched.
 
 The #footer will keep it's height, defined by css or not, but the
@@ -38,19 +37,19 @@ need to make this clear:
     var applyLayout = function() {
       $("#main").stretch();
       ...
-    }
+    };
     applyLayout();
     $(window).resize(applyLayout);
 
 jquery.stretch accepts an options object
 ----------------------------------------
 
-  - *heightProvider:* The (usually) parent object that provides the
+  - **heightProvider:** The (usually) parent object that provides the
     total height. Defaults to the actual parent element, but in case of
     the body element, in most cases you will want to pass _window_.
-  - *mode:* Accepts "height" and "min-height" (or anything else that can
+  - **mode:** Accepts "height" and "min-height" (or anything else that can
     receive an int, but no guarantee for that!).
-  - *fixOverflow:* elements with margins within other elements will
+  - **fixOverflow:** elements with margins within other elements will
     "leak" their margin to the outside of the container, so
 jquery.stretch will fix this by adding "overflow: auto" to stretched
 elements. If you do not want this behavior, set it to _false_.
